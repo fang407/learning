@@ -68,9 +68,8 @@ class Transaction:
 
     def __post_init__(self):
         if self.transaction_type not in (self.TYPE_INBOUND, self.TYPE_OUTBOUND, self.TYPE_ADJUSTMENT):
-            raise ValueError(f"Invalid transaction type:{self.transaction_type}")
+            raise ValueError(f"Invalid transaction type: {self.transaction_type}")
         if self.transaction_type == self.TYPE_INBOUND and self.quantity_change <= 0:
             raise ValueError("INBOUND transaction must have a positive quantity change.")
         if self.transaction_type == self.TYPE_OUTBOUND and self.quantity_change >= 0:
             raise ValueError("OUTBOUND transaction must have a negative quantity change.")
-
