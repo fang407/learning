@@ -34,3 +34,29 @@ class InventoryManager:
     def list_all_products(self) -> List[Product]:
         return list(self._products.values())
 
+    def update_stock(self, transaction: Transaction) -> None:
+        """
+        Update product stock based on a transaction and records the history.
+        Checks for safety stock threshold after update.
+        """
+        product = self.get_product(transaction.product_id)
+
+        if not product:
+            raise ValueError(f"Product ID {transaction.product_id} not found for transaction.")
+        # Update stock
+        product.current_stock += transaction.quantity_change
+
+        # ensure stock does not go negative for outbound transactions
+        if product.current_stock < 0 and transaction.transaction_type == Transaction.TYPE_OUTBOUND:
+            product.current_stock = 0
+            logger.error(f"Stock went negative for {product.name}. Stock capped at 0.")
+
+        # Record transaction
+        self._transaction_history.append(transaction)
+
+        # Check safety stock threshold
+        if product.current_stock <= product.safety_stock_threshold:
+            logger.warning(
+                f"ALERT: Stock for {product.name} (ID: {product.product_id}) is at {product.current_stock}, "
+                f"which is below the safety threshold of {product.safety_stock_threshold}."
+            )
