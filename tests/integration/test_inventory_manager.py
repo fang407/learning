@@ -78,6 +78,27 @@ def test_update_stock_prevents_negative_stock(empty_inventory_manager: Inventory
     assert len(manager._transaction_history) == 1
 
 # --- Parametrized Top K Test ---
+# declare with module scope so it inits only once
+@pytest.fixture(scope="module")
+def populated_manager(shared_inventory_manager: InventoryManager) -> InventoryManager:
+    """Populates the shared manager with a known set of products and stock levels."""
+    manager = shared_inventory_manager
+    manager._products.clear()
+
+    test_data = [
+        ("SKU1", 100),
+        ("SKU2", 50),
+        ("SKU3", 150),
+        ("SKU4", 25),
+        ("SKU5", 200),
+    ]
+
+    for sku, stock in test_data:
+        p = Product(sku=sku, name=f"Item {sku}", price=1.0)
+        p.current_stock = stock
+        manager.add_product(p)
+
+    return manager
 
 @pytest.mark.parametrize(
     "n, expected_skus",
