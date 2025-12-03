@@ -11,10 +11,10 @@ from oes_core.inventory import InventoryManager
 
 def pytest_configure(config):
     """Register custom markers to avoid warning."""
-    config.addinvalue_line(
+    config.addinivalue_line(
         "markers", "smoke: test that verify basic application functionality"
     )
-    config.addinvalue_line(
+    config.addinivalue_line(
         "markers", "performance: tests that measure efficiency (e.g., Top K algorithm)"
     )
 
