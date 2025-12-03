@@ -74,7 +74,7 @@ class InventoryManager:
             stock = product.current_stock
 
             if len(min_heap) < n:
-                heapq.heappush((min_heap, (stock, product)))
+                heapq.heappush(min_heap, (stock, product))
             else:
                 if stock > min_heap[0][0]:
                     heapq.heapreplace(min_heap, (stock, product))

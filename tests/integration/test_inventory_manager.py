@@ -76,3 +76,31 @@ def test_update_stock_prevents_negative_stock(empty_inventory_manager: Inventory
 
     assert manager.get_product(product_id).current_stock == 0
     assert len(manager._transaction_history) == 1
+
+# --- Parametrized Top K Test ---
+
+@pytest.mark.parametrize(
+    "n, expected_skus",
+    [
+        (0, []),
+        (1, ["SKU5"]),
+        (3, ["SKU5", "SKU3", "SKU1"]),
+        (10, ["SKU5", "SKU3", "SKU1", "SKU2", "SKU4"]),
+    ]
+)
+@pytest.mark.performance
+def test_get_top_n_products_by_stock_parametrized(
+        populated_manager: InventoryManager,
+        n: int,
+        expected_skus: List[str]
+):
+    """
+    Tests the Top K algorithm using parametrized inputs.
+    Verifies output order (highest stock first).
+    """
+    manager = populated_manager
+
+    top_n_products = manager.get_top_n_products_by_stock(n)
+    result_skus = [p.sku for p in top_n_products]
+
+    assert result_skus == expected_skus
