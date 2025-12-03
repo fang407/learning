@@ -60,3 +60,26 @@ class InventoryManager:
                 f"ALERT: Stock for {product.name} (ID: {product.product_id}) is at {product.current_stock}, "
                 f"which is below the safety threshold of {product.safety_stock_threshold}."
             )
+
+    def get_top_n_products_by_stock(self, n: int) -> List[Product]:
+        """
+        Returns the top N products with the highest stock levels using a Min-Heap (heapq).
+        """
+        if n <= 0:
+            return []
+
+        min_heap: List[Tuple[int, Product]] = []
+
+        for product in self._products.values():
+            stock = product.current_stock
+
+            if len(min_heap) < n:
+                heapq.heappush((min_heap, (stock, product)))
+            else:
+                if stock > min_heap[0][0]:
+                    heapq.heapreplace(min_heap, (stock, product))
+
+        result_products = [item[1] for item in min_heap]
+        result_products.sort(key=lambda p: p.current_stock, reverse=True)
+
+        return result_products
