@@ -86,12 +86,13 @@ def populated_manager(shared_inventory_manager: InventoryManager) -> InventoryMa
     manager._products.clear()
 
     test_data = [
-        ("SKU1", 100),
-        ("SKU2", 50),
-        ("SKU3", 150),
-        ("SKU4", 25),
-        ("SKU5", 200),
+        ("SKU100", 100),  # Top 2
+        ("SKU050", 50),
+        ("SKU150", 150),  # Top 1
+        ("SKU025", 25),
+        ("SKU001", 1),
     ]
+    random.shuffle(test_data)
 
     for sku, stock in test_data:
         p = Product(sku=sku, name=f"Item {sku}", price=1.0)
@@ -103,10 +104,16 @@ def populated_manager(shared_inventory_manager: InventoryManager) -> InventoryMa
 @pytest.mark.parametrize(
     "n, expected_skus",
     [
+        # Test Case 1: n = 0 (Boundary: K=0)
         (0, []),
-        (1, ["SKU5"]),
-        (3, ["SKU5", "SKU3", "SKU1"]),
-        (10, ["SKU5", "SKU3", "SKU1", "SKU2", "SKU4"]),
+        # Test Case 2: n = 1 (Smallest K)
+        (1, ["SKU150"]),  # Highest stock: 150
+        # Test Case 3: n = 3 (Typical K)
+        (3, ["SKU150", "SKU100", "SKU050"]),  # Stock: 150, 100, 50
+        # Test Case 4: n = 5 (All products, verifying descending order)
+        (5, ["SKU150", "SKU100", "SKU050", "SKU025", "SKU001"]),
+        # Test Case 5: n > total products (Boundary: K > N)
+        (10, ["SKU150", "SKU100", "SKU050", "SKU025", "SKU001"]),
     ]
 )
 @pytest.mark.performance
@@ -125,3 +132,6 @@ def test_get_top_n_products_by_stock_parametrized(
     result_skus = [p.sku for p in top_n_products]
 
     assert result_skus == expected_skus
+
+    expected_length = min(n, len(manager.list_all_products()))
+    assert len(top_n_products) == expected_length
