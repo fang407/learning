@@ -62,15 +62,14 @@ def empty_inventory_manager() -> InventoryManager:
 # --- 4. Mocking & Logging Fixtures ---
 
 @pytest.fixture(scope="function")
-def stock_warning_manager(empty_inventory_manager: InventoryManager) -> Product:
+def stock_warning_manager_setup(empty_inventory_manager: InventoryManager) -> Product:
     """
-    Sets up a manager with a product configured to easily trigger a WARNING log.
-    Returns the Product object, but the manger is set up in the background.
+    Sets up a manager with a product and create the nessary transaction, but DOES NOT EXECUTE IT.
     """
     manager = empty_inventory_manager
 
     product = Product(
-        sku="TEST-LOW",
+        sku="TESTLOW",
         name="Low Stock Item",
         price=5.0,
         current_stock=15,
@@ -83,9 +82,8 @@ def stock_warning_manager(empty_inventory_manager: InventoryManager) -> Product:
         quantity_change=-10,
         transaction_type=Transaction.TYPE_OUTBOUND
     )
-    manager.update_stock(transaction)
 
-    return product
+    return manager, product, transaction
 
 @pytest.fixture(scope="function")
 def mock_transaction() -> Transaction:
