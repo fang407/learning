@@ -14,6 +14,7 @@ def test_resource_is_available(temporary_file_resource):
     assert "Initial resource state data." in content
 
 @pytest.mark.performance
+@pytest.mark.xfail
 def test_resource_cleanup_runs_on_failure(temporary_file_resource):
     """Tests that the teardown still runs even if the test intentionally fails."""
     file_path = temporary_file_resource
