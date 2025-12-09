@@ -83,3 +83,25 @@ class InventoryManager:
         result_products.sort(key=lambda p: p.current_stock, reverse=True)
 
         return result_products
+
+    def check_and_process_item(self, product_id: str) -> str:
+        """
+        Performs external status check and handles various outcomes.
+        Returns 'PROCESSED', 'FAILED' or 'ERROR'.
+        """
+        import oes_core.utils
+
+        try:
+            # External call that we will mock
+            status_code = oes_core.utils.check_status(product_id)
+
+            if status_code == 200:
+                return "PROCESSED"
+            elif status_code == 400:
+                return "FAILED_VALIDATION"
+            else:
+                return "UNEXPECTED_CODE"
+        except ValueError:
+            return "FAILED_VALIDATION"
+        except Exception:
+            return "ERROR_RUNTIME"
