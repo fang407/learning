@@ -17,6 +17,9 @@ def pytest_configure(config):
     config.addinivalue_line(
         "markers", "performance: tests that measure efficiency (e.g., Top K algorithm)"
     )
+    config.addinivalue_line(
+        "markers", "data_integrity: Mark tests as focusing on data validation and fuzz boundary checks."
+    )
 
 # --- 2. Basic Utility Fixtures ---
 
