@@ -105,3 +105,8 @@ class InventoryManager:
             return "FAILED_VALIDATION"
         except Exception:
             return "ERROR_RUNTIME"
+
+    def perform_batch_status_check(self, item_list: List[str]):
+        import oes_core.utils
+        for item in item_list:
+            oes_core.utils.get_external_status(item)
