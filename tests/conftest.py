@@ -1,8 +1,8 @@
 import pytest
-import datetime
+import tempfile
 import uuid
 import logging
-import io
+import os
 from typing import Dict, List, Tuple
 from oes_core.models import Product, Transaction
 from oes_core.inventory import InventoryManager
@@ -62,7 +62,7 @@ def empty_inventory_manager() -> InventoryManager:
 # --- 4. Mocking & Logging Fixtures ---
 
 @pytest.fixture(scope="function")
-def stock_warning_manager_setup(empty_inventory_manager: InventoryManager) -> Product:
+def stock_warning_manager_setup(empty_inventory_manager: InventoryManager):
     """
     Sets up a manager with a product and create the nessary transaction, but DOES NOT EXECUTE IT.
     """
@@ -94,3 +94,29 @@ def mock_transaction() -> Transaction:
         quantity_change=-5,
         transaction_type=Transaction.TYPE_OUTBOUND
     )
+
+@pytest.fixture(scope="function")
+def temporary_file_resource(request):
+    """
+    Creates a temporary file resource for a single test function's use.
+    Uses a finalizer to ensure the file is closed and deleted, guaranteeing cleanup.
+    """
+    temp_filename = os.path.join(tempfile.gettempdir(), f"test_data_{uuid.uuid4()}.txt")
+
+    f = open(temp_filename, 'w')
+    f.write("Initial resource state data.")
+    f.close()
+
+    print(f"\n[SETUP] Created temporary resource: {temp_filename}")
+
+    # YIELD: The fixture provides the path to the test function
+    yield temp_filename
+
+    # TEARDOWN PHASE: cleanup the resource. the yield mechanism ensures this block runs even if test fails
+    try:
+        os.remove(temp_filename)
+        print(f"\n[TEARDOWN] Successfully deleted resource: {temp_filename}")
+    except OSError as e:
+        # Handle cases where the file might have been deleted by the test itself
+        print(f"\n[TEARDOWN] Could not delete resource: {e}")
+
