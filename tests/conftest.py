@@ -123,3 +123,25 @@ def temporary_file_resource(request):
         # Handle cases where the file might have been deleted by the test itself
         print(f"\n[TEARDOWN] Could not delete resource: {e}")
 
+
+@pytest.fixture(scope="function", autouse=True)
+def enforce_data_integrity(shared_inventory_manager: InventoryManager):
+    """
+    AUTOUSE fixture that verifies all test data in the manager adheres to the core validation rules.
+    This prevents flawed test data from reaching the application code.
+    """
+    manager = shared_inventory_manager
+
+    for product in manager.list_all_products():
+        assert product.sku.isalnum(), (
+            f"DATA RIGOR FAILURE: SKU '{Product.sku}' is not alphanumeric. "
+            f"Fix the fixture populating this data (e.g. populated_manager)."
+        )
+        assert product.price > 0, (
+            f"DATA RIGOR FAILURE: Price for {product.sku} is not positive."
+        )
+
+    # Allow the actual test to run
+    yield
+    # TEARDOWN PHASE
+    pass
