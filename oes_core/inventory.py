@@ -1,4 +1,4 @@
-import collections
+
 import heapq
 import logging
 from typing import Dict, List, Optional, Tuple
@@ -29,6 +29,7 @@ class InventoryManager:
         logger.info(f"Added product: {product.name} ({product.product_id})")
 
     def get_product(self, product_id: str) -> Optional[Product]:
+        logger.info(f"Fetching product #{product_id}...")
         return self._products.get(product_id)
 
     def list_all_products(self) -> List[Product]:
