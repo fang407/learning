@@ -13,6 +13,7 @@ def get_something_good():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm')
+    print_hi('PyCharm here again to check.')
+    assert get_something_good() is True
 
 # See PyCharm help at https://www.jetbrains.com/help/pycharm/
