@@ -13,7 +13,7 @@ def get_something_good():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    print_hi('PyCharm is the best i think.')
+    print_hi('PyCharm is the best, with Gemini it is a wonderland.')
     good_day = get_something_good()
-    assert good_day is True
-    assert 1 == 1
+    good_night = get_something_good()
+    assert good_day == good_night
