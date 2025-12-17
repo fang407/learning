@@ -13,8 +13,7 @@ class InventoryManager:
     Manages the inventory of products and records all transactions.
     """
     def __init__(self):
-        # Hashmap (Dict): Key=Product ID, Value=Product object.
-        # This allows O(1) average time complexity for lookups, additions, and removals.
+        # Hashmap (Dict): Key=Product ID, Value=Product object, which allows O(1) average time complexity for lookups, additions, and removals.
         self._products: Dict[str, Product] = {}
         # Stack (List): Used to record transaction history, simulating an undo stack.
         # This showcases using a List as a Stack (append/pop).
@@ -45,6 +44,7 @@ class InventoryManager:
         if not product:
             raise ValueError(f"Product ID {transaction.product_id} not found for transaction.")
         # Update stock
+        logger.info("Updating stock...")
         product.current_stock += transaction.quantity_change
 
         # ensure stock does not go negative for outbound transactions
@@ -109,5 +109,6 @@ class InventoryManager:
 
     def perform_batch_status_check(self, item_list: List[str]):
         import oes_core.utils
+
         for item in item_list:
             oes_core.utils.get_external_status(item)
