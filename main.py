@@ -15,6 +15,5 @@ def get_something_good():
 if __name__ == '__main__':
     print_hi('Layer is indeed not to mess around with.')
     good_day = get_something_good()
-    good_evening = get_something_good() or False
 
-    assert good_day == good_evening
+    assert good_day is True

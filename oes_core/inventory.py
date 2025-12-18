@@ -13,10 +13,9 @@ class InventoryManager:
     Manages the inventory of products and records all transactions.
     """
     def __init__(self):
-        # Hashmap (Dict): Key=Product ID, Value=Product object, which allows O(1) average time complexity for lookups, additions, and removals.
+        # Hashmap (Dict): Key=Product ID, Value=Product object, which allows O(1) average time complexity for CRUD.
         self._products: Dict[str, Product] = {}
         # Stack (List): Used to record transaction history, simulating an undo stack.
-        # This showcases using a List as a Stack (append/pop).
         self._transaction_history: List[Transaction] = []
         logger.warning("InventoryManager initialized.")
 
