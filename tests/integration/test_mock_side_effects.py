@@ -1,5 +1,4 @@
-import pytest
-import uuid
+
 from oes_core.inventory import InventoryManager
 
 def test_check_and_process_item_handles_sequential_results(mocker, empty_inventory_manager: InventoryManager):
