@@ -1,5 +1,6 @@
 # This is a sample Python script.
-
+import logging
+logger = logging.getLogger(__name__)
 # Press ⌃R to execute it or replace it with your code.
 # Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
 
@@ -14,6 +15,12 @@ def get_something_good():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     print_hi('Layer is indeed not to mess around with.')
-    good_day = get_something_good()
+    print("How are you doing!")
+    logger.info("Im fine thank you!!!")
 
-    assert good_day is True
+    good_day = get_something_good()
+    good_night = get_something_good()
+
+    assert good_day == good_night
+    assert 2 != 1
+    assert 3 == 3
