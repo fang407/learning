@@ -1,4 +1,6 @@
-
+import os
+import time
+import json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -9,7 +11,7 @@ def print_hi(name):
 
 def get_something_good():
     print("Get lucky today!")
-    logger.info("Typo happens, but no worries.")
+    logger.warning("Cheeky stuff...")
 
     return True
 
@@ -21,4 +23,5 @@ if __name__ == '__main__':
     good_night = get_something_good()
 
     assert good_day == good_night
-    print("Always good practice to print out everything!")
+    print("What happened????")
+    logging.info("Now im worried...")
