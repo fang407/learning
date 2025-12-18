@@ -1,4 +1,6 @@
 import os
+import time
+import json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -28,3 +30,4 @@ if __name__ == '__main__':
 
     logging.info("Now im worried...")
     print("Im actually, very very sleepy now. THANK YOU!")
+    logger.info("Cheeky stuff!")
