@@ -1,7 +1,5 @@
 
-import pytest
 import logging
-from unittest.mock import MagicMock
 from oes_core.models import Product, Transaction
 from oes_core.inventory import InventoryManager
 

@@ -1,5 +1,4 @@
 
-import pytest
 import time
 from oes_core.inventory import InventoryManager
 

@@ -1,9 +1,8 @@
 import pytest
 import tempfile
 import uuid
-import logging
 import os
-from typing import Dict, List, Tuple
+from typing import Dict
 from oes_core.models import Product, Transaction
 from oes_core.inventory import InventoryManager
 

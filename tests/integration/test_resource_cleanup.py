@@ -1,8 +1,6 @@
 
 import pytest
 import os
-from oes_core.inventory import InventoryManager
-from oes_core.models import Product
 
 def test_resource_is_available(temporary_file_resource):
     """Tests that the resource path exists and is readable during the test. """
