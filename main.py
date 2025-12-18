@@ -1,6 +1,4 @@
 import os
-import time
-import json
 import logging
 logger = logging.getLogger(__name__)
 
@@ -12,6 +10,7 @@ def print_hi(name):
 def get_something_good():
     print("Get lucky today!")
     logger.warning("Cheeky stuff...")
+    logger.info("How to catch AWS timeout in the first place??")
 
     return True
 
@@ -20,8 +19,11 @@ if __name__ == '__main__':
     logger.warning("Developer debugging...")
 
     good_day = get_something_good()
-    good_night = get_something_good()
 
-    assert good_day == good_night
+    assert good_day is True
+    assert 23 != 24
+    assert 81 != 33
+
     print("What happened????")
     logging.info("Now im worried...")
+    print("Im actually, very very sleepy now. THANK YOU!")
