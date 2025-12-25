@@ -1,9 +1,6 @@
-import os
-import time
-import json
+
 import logging
 logger = logging.getLogger(__name__)
-
 
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
@@ -19,15 +16,11 @@ def get_something_good():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     logger.warning("Developer debugging...Take naps now!")
+    logger.info("Actually, this is to check if we can print log in console.")
 
     good_day = get_something_good()
-    good_night = get_something_good()
+    good_night = get_something_good() and False
 
-    assert good_day == good_night
-    assert 23 != 24
-    assert 81 != 33
-    assert 100 == 100
-
+    assert good_day != good_night
     logging.info("Now im worried...")
-    print("Im actually, very very sleepy now. THANK YOU!")
-    logger.info("Cheeky stuff!")
+
