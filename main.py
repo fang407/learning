@@ -5,6 +5,7 @@ logger = logging.getLogger(__name__)
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hello! {name}')
+    print("Hi Mary!")
 
 def get_something_good():
     print("Get lucky today!")
@@ -16,7 +17,6 @@ def get_something_good():
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     logger.warning("Developer debugging...Take naps now!")
-    logger.error("Actually, this is to check if we can print log in console.")
     logger.info("Do we need to set logger level in main.py? im not too sure!")
 
     good_day = get_something_good()
