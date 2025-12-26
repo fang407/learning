@@ -2,7 +2,6 @@
 import heapq
 import logging
 from typing import Dict, List, Optional, Tuple
-
 from oes_core.models import Product, Transaction
 
 logger = logging.getLogger(__name__)
@@ -103,7 +102,7 @@ class InventoryManager:
                 return "UNEXPECTED_CODE"
         except ValueError:
             return "FAILED_VALIDATION"
-        except Exception:
+        except RuntimeError:
             return "ERROR_RUNTIME"
 
     def perform_batch_status_check(self, item_list: List[str]):
