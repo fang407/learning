@@ -86,7 +86,6 @@ class InventoryManager:
     def check_and_process_item(self, product_id: str) -> str:
         """
         Performs external status check and handles various outcomes.
-        Returns 'PROCESSED', 'FAILED' or 'ERROR'.
         """
         import oes_core.utils
 
@@ -111,6 +110,5 @@ class InventoryManager:
         for item in item_list:
             oes_core.utils.get_external_status(item)
 
-        assert 1 == 1
         print("Not trying to have fun here but got to do some weird stuff...")
         logger.info("Not trying to have fun here but got to do some weird stuff...")
