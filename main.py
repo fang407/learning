@@ -5,13 +5,10 @@ logger = logging.getLogger(__name__)
 def print_hi(name):
     # Use a breakpoint in the code line below to debug your script.
     print(f'Hello! {name}')
-    print("Hi Mary!")
+    print("Hi John!")
 
 def get_something_good():
     print("Get lucky today!")
-    logger.warning("Cheeky stuff...")
-    logger.info("How to catch AWS timeout in the first place??")
-
     return True
 
 # Press the green button in the gutter to run the script.
@@ -24,4 +21,5 @@ if __name__ == '__main__':
 
     assert good_day == good_night
     logging.info("Now im worried...")
+    logger.info("I guess both work HAHHA.")
 
