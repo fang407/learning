@@ -109,3 +109,5 @@ class InventoryManager:
 
         for item in item_list:
             oes_core.utils.get_external_status(item)
+            print("Local debug here!")
+            logger.info("Debug finished. No risk!")
