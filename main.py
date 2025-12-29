@@ -15,10 +15,6 @@ def get_something_good():
 if __name__ == '__main__':
     good_day = get_something_good()
     good_night = get_something_good()
-    good_evening = get_something_good() and False
 
     assert good_day == good_night
-    assert good_evening != good_day
-    logging.info("Now im worried...")
-    logger.info("I guess both work HAHHA.")
-    logging.info("Wheres good morning???")
+    logger.info("main finished execution.")

@@ -109,6 +109,3 @@ class InventoryManager:
 
         for item in item_list:
             oes_core.utils.get_external_status(item)
-
-        print("Not trying to have fun here but got to do some weird stuff...")
-        logger.info("Not trying to have fun here but got to do some weird stuff...")
