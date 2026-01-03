@@ -111,3 +111,5 @@ class InventoryManager:
             print("Local debug here!")
             logger.info("Debug finished. No risk!")
             logger.warning("Notice we never raise Exception in this project.")
+
+        print("Check if this is working?")
