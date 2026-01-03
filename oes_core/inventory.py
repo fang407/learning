@@ -113,3 +113,4 @@ class InventoryManager:
             logger.warning("Notice we never raise Exception in this project.")
 
         print("Check if this is working?")
+        logger.warning("This is sth completely new...")

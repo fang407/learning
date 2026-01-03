@@ -1,5 +1,4 @@
-import os
-import json
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -23,3 +22,4 @@ if __name__ == '__main__':
     logger.info("main finished execution.")
     logger.warning("Actually, not finished yet...")
     print("Yes, it works!")
+    logger.info("Really?")
