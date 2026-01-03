@@ -92,12 +92,11 @@ class InventoryManager:
         try:
             # External call that we will mock
             status_code = oes_core.utils.check_status(product_id)
-
             if status_code == 200:
                 return "PROCESSED"
             elif status_code == 400:
                 return "FAILED_VALIDATION"
-            else:
+            elif status_code == 500:
                 return "UNEXPECTED_CODE"
         except ValueError:
             return "FAILED_VALIDATION"
@@ -109,3 +108,9 @@ class InventoryManager:
 
         for item in item_list:
             oes_core.utils.get_external_status(item)
+            print("Local debug here!")
+            logger.info("Debug finished. No risk!")
+            logger.warning("Notice we never raise Exception in this project.")
+
+        print("Check if this is working?")
+        logger.warning("This is sth completely new...")
