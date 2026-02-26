@@ -74,6 +74,3 @@ class Transaction:
             raise ValueError("INBOUND transaction must have a positive quantity change.")
         if self.transaction_type == self.TYPE_OUTBOUND and self.quantity_change >= 0:
             raise ValueError("OUTBOUND transaction must have a negative quantity change.")
-
-        print("Testing here!")
-        logging.info("How is this not saying?")
