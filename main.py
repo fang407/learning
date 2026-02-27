@@ -8,7 +8,7 @@ def print_hi(name):
 
 def get_something_good():
     print("Get lucky today! Get test tomorrow!")
-    return None
+    return True
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
@@ -18,3 +18,4 @@ if __name__ == '__main__':
     assert good_day == good_night
     logger.info("main finished execution.")
     logger.warning("TODO: Both returned none, fix this later.")
+    print("Assertion pass, test case closing...")

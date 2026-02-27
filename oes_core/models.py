@@ -2,7 +2,6 @@ from dataclasses import dataclass, field
 from datetime import datetime
 from typing import Optional, Any
 import uuid
-import logging
 
 @dataclass
 class Product:
