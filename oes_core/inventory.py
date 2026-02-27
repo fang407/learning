@@ -108,9 +108,3 @@ class InventoryManager:
 
         for item in item_list:
             oes_core.utils.get_external_status(item)
-            print("Local debug here!")
-            logger.info("Debug finished. No risk!")
-            logger.warning("Notice we never raise Exception in this project.")
-
-        print("Check if this is working?")
-        logger.warning("This is sth completely new...")
