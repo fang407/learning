@@ -81,3 +81,5 @@ def test_stock_update_does_not_call_sender_when_safe(mocker, empty_inventory_man
     manager.update_stock(outbound_tx)
 
     mock_email_sender.assert_not_called()
+    print("Testing 123!")
+    logging.info("I think i forgot to create a logger here?")
