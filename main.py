@@ -14,8 +14,9 @@ def get_something_good():
 if __name__ == '__main__':
     good_day = get_something_good()
     good_night = get_something_good()
+    goodAfternoon = print_hi()
 
     assert good_day == good_night
-    logger.info("main finished execution.")
-    logger.warning("TODO: Both returned none, fix this later.")
+    print_hi()
     print("Assertion pass, test case closing...")
+    logger.warning("Script closing, watch out for traffic!")
