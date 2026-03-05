@@ -1,4 +1,4 @@
-import os
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -12,13 +12,9 @@ def get_something_good():
 
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
-    good_day = print_hi()
+    good_day = get_something_good()
     good_night = get_something_good()
-
-    goodAfternoon = print_hi()
-
     assert good_day == good_night
-    assert True is not False
 
-    logger.error("Script closing, watch out for traffic!")
-    print("Script finished execution.")
+    print_hi()
+    logger.info("Script finished execution.")

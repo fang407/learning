@@ -52,7 +52,7 @@ class Transaction:
     """
     # TYPE CONSTANTS
     TYPE_INBOUND = "INBOUND"
-    TYPE_OUTBOUND = "OUTBOUND"
+    TYPE_OUTBOUND = "OUTBoUND"
     TYPE_ADJUSTMENT = "ADJUSTMENT"
 
     transaction_id: str = field(default_factory=lambda: str(uuid.uuid4()), init=False)
